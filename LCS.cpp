@@ -2,7 +2,7 @@
 #include <string>
 #include <algorithm>
 using namespace std;
-
+/* TOP DOWN */
 int lcs(string s1,string s2,int n,int m){
 	if(n == 0 || m==0)
 		return 0;
@@ -14,11 +14,10 @@ int lcs(string s1,string s2,int n,int m){
 	
 
 }
-//optimal solution
+/**   optimal solution  BUTTOM UP */
+int l[100][100];
 
 int Lcs(string s1,string s2,int n,int m){ 
-	
-	int l[n+1][m+1];
 	
 	for(int i=0;i<=n;i++){
 		for(int j=0;j<=m;j++){
@@ -34,13 +33,30 @@ int Lcs(string s1,string s2,int n,int m){
 	return l[n][m];
 	
 }
+void print_solution(string s,int i,int j)
+{
+	if(i==0 || j==0)
+		return;
+	if(l[i-1][j] == l[i][j]){
+		print_solution(s, i-1, j);
+	}
+	else if(l[i][j-1] == l[i][j]){
+		print_solution(s, i, j-1);
+	}
+	else{
+		print_solution(s, i-1, j-1);
+		cout<<s[i-1];
+	}
+}
 
-int main(int argc, char *argv[]) {
+int main() {
 	
 	string s1 = "AGGTAB";
 	string s2 = "GXTXAYB";
 	
 	cout<<Lcs(s1,s2,s1.length(),s2.length())<<endl;
+	
+	print_solution(s1, s1.length(), s2.length());
 	
 	return 0;	
 }

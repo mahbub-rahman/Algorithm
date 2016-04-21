@@ -2,10 +2,10 @@
 
 using namespace std;
 #define MAX 100
-int n;
+
 int m[MAX][MAX];
 int s[MAX][MAX];
-void Matrix_chain(int mat[])
+void Matrix_chain(int mat[],int n)
 {
 	for(int i=1;i<=n;i++) m[i][i] = 0;
 	
@@ -18,7 +18,9 @@ void Matrix_chain(int mat[])
 				
 				if(q < m[i][j]){
 					m[i][j] = q;
+					//cout<<"m["<<i<<"]"<<"["<<j<<"] = "<<q<<endl;
 					s[i][j] = k;
+					//cout<<"s["<<i<<"]"<<"["<<j<<"] = "<<k<<endl;
 				}
 			}
 		}
@@ -26,24 +28,25 @@ void Matrix_chain(int mat[])
 }
 
 
-void print(int mat[] ,int i,int j)
+void print_order(int i,int j)
 {
 	if(i == j){
-		cout<<mat[i-1]<<" ";
+		cout<<"A"<<i<<" ";
 	}else{
 		cout<<"(";
-		print(mat,i,s[i][j]);
-		print(mat,s[i][j]+1, j );
+		print_order(i,s[i][j]);
+		print_order(s[i][j]+1, j );
 		cout<<")";
 	}
 }
 
-int main(int argc, char *argv[]) {
+int main() {
 	
-	int mat[] = {30,35,15,5,10,20,25};
+//	int mat[] = {30,35,15,5,10,20,25};
+	int mat[] = {5,10,3,12,5,50,6}; 
 	
-	n = 6;
-	Matrix_chain(mat);
+
+	Matrix_chain(mat,6);
 	cout<< "Totall Cost : "<< m[1][6]<<endl;
-	print(mat,1, 6);
+	print_order(1, 6);
 }

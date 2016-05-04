@@ -23,7 +23,7 @@ void print(int n)
 		n = n-s[n];
 	}
 }
-int main(int argc, char *argv[]) {
+int main() {
 	int arr[] = {0,1, 5, 8, 9, 10, 17, 17, 20};
 	
 	int n;

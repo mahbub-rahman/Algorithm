@@ -34,7 +34,7 @@ int MemoRodCut(int price[],int n)
 	return MemoRodCutDP(price,n,r);
 }
 
-int main(int argc, char *argv[]) {
+int main() {
 	int price[] = {1, 5, 8, 9, 10, 17, 17, 20};
 	cout<<MemoRodCut(price, 8)<<endl;
 }

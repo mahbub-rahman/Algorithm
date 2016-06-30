@@ -18,7 +18,7 @@ typedef unsigned long long ull;
 #define READ(f) freopen(f, "r", stdin)
 #define WRITE(f) freopen(f, "w", stdout)
 
-ll mod = 1000000000+7;
+ll mod = 100000000+7;
 
 struct Matrix{
 	int val[5][5];
@@ -54,7 +54,7 @@ Matrix power(Matrix m,ll p)
 	ret = multiply(ret, ret);
 	return ret;
 }
-int fibonacci(int a,int b,int n)
+ll fibonacci(int a,int b,int n)
 {
 	if(n == 1){
 		return a;
@@ -67,7 +67,7 @@ int fibonacci(int a,int b,int n)
 	mat.val[0][0] = mat.val[0][1] = mat.val[1][0] = 1; // Base Value
 	mat.val[1][1] = 0;
 	mat = power(mat, n-1);
-	int ans = b * mat.val[0][0] + a * mat.val[0][1];
+	ll ans = b * mat.val[0][0] + a * mat.val[0][1];
 	ans %= mod;
 	return ans ;
 	
